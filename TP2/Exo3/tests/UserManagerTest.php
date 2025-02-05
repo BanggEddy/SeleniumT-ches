@@ -1,7 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../UserManager.php';
+require_once __DIR__ . '/../src/UserManager.php';
+
 use PHPUnit\Framework\TestCase;
+use src\UserManager;
 
 class UserManagerTest extends TestCase
 {
