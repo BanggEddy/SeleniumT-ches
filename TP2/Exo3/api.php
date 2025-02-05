@@ -1,4 +1,5 @@
 <?php
+
 require_once 'UserManager.php';
 header("Content-Type: application/json");
 
