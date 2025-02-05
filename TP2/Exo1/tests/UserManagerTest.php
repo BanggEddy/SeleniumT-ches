@@ -37,7 +37,7 @@ class UserManagerTest extends TestCase
         // add user
         $this->userManager->addUser('sldqsldk', 'qsdokq@qosdko.com');
         $users = $this->userManager->getUsers();
-        $userId = $users[0]['id']; 
+        $userId = $users[0]['id'];
         $this->userManager->updateUser($userId, $name, $email);
 
         $updatedUser = $this->userManager->getUser($userId);

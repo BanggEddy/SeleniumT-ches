@@ -3,17 +3,15 @@ class UserManager {
     private PDO $db;
 
     public function __construct() {
-        // Connexion à la base de données sur WAMP
         $dsn = "mysql:host=localhost;dbname=user_management;charset=utf8";
-        $username = "root"; // Utilisateur par défaut de WAMP
-        $password = ""; // Mot de passe vide par défaut
+        $username = "root";
+        $password = "";
         try {
             $this->db = new PDO($dsn, $username, $password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             ]);
         } catch (PDOException $e) {
-            // Gestion des erreurs de connexion
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
@@ -28,8 +26,7 @@ class UserManager {
     }
 
     public function removeUser(int $id): void {
-        // Vérification si l'utilisateur existe
-        $user = $this->getUser($id); // Si l'utilisateur n'existe pas, une exception sera lancée ici
+        $user = $this->getUser($id);
 
         $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
@@ -49,8 +46,7 @@ class UserManager {
     }
 
     public function updateUser(int $id, string $name, string $email): void {
-        // Vérification si l'utilisateur existe
-        $user = $this->getUser($id); // Si l'utilisateur n'existe pas, une exception sera lancée ici
+        $user = $this->getUser($id);
 
         $stmt = $this->db->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
         $stmt->execute(['id' => $id, 'name' => $name, 'email' => $email]);
@@ -58,7 +54,6 @@ class UserManager {
 
     public function removeAllUsers()
     {
-        // Supprimer tous les utilisateurs de la base
         $stmt = $this->db->query("DELETE FROM users");
         $stmt->execute();
     }
