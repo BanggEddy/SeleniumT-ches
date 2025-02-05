@@ -17,8 +17,8 @@ class UserManagerTest extends TestCase
     // Vérifie qu’un utilisateur est bien ajouté à la base de données.
     public function testAddUser(): void
     {
-        $name = 'Test User';
-        $email = 'testuser@example.com';
+        $name = 'qspodqds';
+        $email = 'qsdpokqd@qopsdkqs.com';
 
         $this->userManager->addUser($name, $email);
 
@@ -31,18 +31,15 @@ class UserManagerTest extends TestCase
     // Vérifie que les modifications d’un utilisateur sont correctement enregistrées.
     public function testUpdateUser(): void
     {
-        $name = 'Updated User';
-        $email = 'updateduser@example.com';
+        $name = 'qspodk';
+        $email = 'sqdokqds@qsdqsd.com';
 
         // add user
-        $this->userManager->addUser('Original Name', 'original@example.com');
+        $this->userManager->addUser('sldqsldk', 'qsdokq@qosdko.com');
         $users = $this->userManager->getUsers();
-        $userId = $users[0]['id'];  // ID de l'utilisateur ajouté
-
-        // msj user
+        $userId = $users[0]['id']; 
         $this->userManager->updateUser($userId, $name, $email);
 
-        // verif user
         $updatedUser = $this->userManager->getUser($userId);
         $this->assertEquals($name, $updatedUser['name']);
         $this->assertEquals($email, $updatedUser['email']);
@@ -51,12 +48,9 @@ class UserManagerTest extends TestCase
     // Vérifie qu’un utilisateur est bien supprimé.
     public function testRemoveUser(): void
     {
-        // add utilisateur
-        $this->userManager->addUser('To Be Removed', 'toremove@example.com');
+        $this->userManager->addUser('qsdoqsd', 'qskdqsdi@qsodkqsodp.com');
         $users = $this->userManager->getUsers();
         $userId = $users[0]['id'];
-
-        // Supp user
         $this->userManager->removeUser($userId);
 
         // Vérif
@@ -67,8 +61,8 @@ class UserManagerTest extends TestCase
     //Vérifie que la récupération de la liste des utilisateurs fonctionne.
     public function testGetUsers(): void
     {
-        $this->userManager->addUser('User 1', 'user1@example.com');
-        $this->userManager->addUser('User 2', 'user2@example.com');
+        $this->userManager->addUser('user1', 'qsdij@qsdiojqds.com');
+        $this->userManager->addUser('utilisateur2', 'qsdpoqdsop@qsdij.com');
 
         $users = $this->userManager->getUsers();
         $this->assertCount(2, $users);
@@ -78,7 +72,7 @@ class UserManagerTest extends TestCase
     public function testInvalidUpdateThrowsException(): void
     {
         $this->expectException(Exception::class);
-        $this->userManager->updateUser(9999, 'Nonexistent User', 'nonexistent@example.com');
+        $this->userManager->updateUser(9999, 'qsodkqspodk', 'qsiodqsdod@example.com');
     }
 
     //Vérifie qu’une tentative de suppression d’un livre inexistant génère une erreur.
